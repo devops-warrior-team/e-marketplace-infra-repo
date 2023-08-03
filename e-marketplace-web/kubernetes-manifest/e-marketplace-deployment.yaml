@@ -44,7 +44,4 @@ spec:
             items: 
             - key: nginx.conf
               path: default.conf
-        - name: www-storage
-          persistentVolumeClaim:
-            claimName: pv-source-code-e-marketplace-claim
 

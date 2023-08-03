@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: e-marketplace
+  namespace: e-marketplace
+spec:
+  replicas: 3
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: e-marketplace
+  template:
+    metadata:
+      labels:
+        app: e-marketplace
+    spec:
+      containers:
+      - image: feriva22/e-marketplace:latest
+        name: e-marketplace
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: e-marketplace-configmap
+        - secretRef:
+            name: e-marketplace-secret

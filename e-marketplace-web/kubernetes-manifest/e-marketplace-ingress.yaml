@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: e-marketplace-ingress
+  namespace: e-marketplace
+  annotations:
+    # use cert-manager.io/cluster-issuer if your issuer is on cluster-wide 
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    #nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    # If you encounter a redirect loop or are getting a 307 response code
+    # then you need to force the nginx ingress to connect to the backend using HTTPS.
+    #nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  ingressClassName: "nginx"
+  rules:
+  - host: e-marketplace.devops-warrior.site
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: e-marketplace
+            port:
+              name: http
+  tls:
+  - hosts:
+    - e-marketplace.devops-warrior.site
+    secretName: e-marketplace-tls-secret

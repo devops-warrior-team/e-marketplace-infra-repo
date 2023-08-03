@@ -15,12 +15,12 @@ spec:
         app: e-marketplace
     spec:
       containers:
-      - image: feriva22/e-marketplace:latest
-        name: e-marketplace
-        ports:
-        - containerPort: 80
-        envFrom:
-        - configMapRef:
-            name: e-marketplace-configmap
-        - secretRef:
-            name: e-marketplace-secret
+        - image: docker.io/feriva22/e-marketplace:1
+          name: e-marketplace
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: e-marketplace-configmap
+            - secretRef:
+                name: e-marketplace-secret

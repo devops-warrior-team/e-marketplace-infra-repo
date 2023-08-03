@@ -18,7 +18,7 @@ spec:
       - image: feriva22/e-marketplace:latest
         name: e-marketplace
         ports:
-        - containerPort: 80
+        - containerPort: 9000
         envFrom:
         - configMapRef:
             name: e-marketplace-configmap

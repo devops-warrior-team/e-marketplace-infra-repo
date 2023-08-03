@@ -15,7 +15,7 @@ spec:
         app: e-marketplace
     spec:
       containers:
-        - image: docker.io/feriva22/e-marketplace:12
+        - image: docker.io/feriva22/e-marketplace:13
           name: e-marketplace
           ports:
             - containerPort: 9000

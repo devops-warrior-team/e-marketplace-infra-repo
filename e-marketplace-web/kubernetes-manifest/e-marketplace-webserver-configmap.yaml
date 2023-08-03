@@ -24,7 +24,7 @@ data:
       }
 
       location ~ \.php$ {
-          fastcgi_pass 127.0.0.1:9000;
+          fastcgi_pass 127.0.0.1:9000; #why using 127.0.0.1 not IP of php-fpm container, because in pod sharing same network namespace
           fastcgi_index index.php;
           include fastcgi_params;
           fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;

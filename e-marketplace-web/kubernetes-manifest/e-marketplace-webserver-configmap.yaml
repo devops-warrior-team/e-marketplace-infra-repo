@@ -24,7 +24,7 @@ data:
       }
 
       location ~ \.php$ {
-          fastcgi_pass e-marketplace-web:9000;
+          fastcgi_pass 127.0.0.1:9000;
           fastcgi_index index.php;
           include fastcgi_params;
           fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;

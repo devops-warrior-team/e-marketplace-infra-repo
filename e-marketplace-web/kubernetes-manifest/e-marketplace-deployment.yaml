@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - image: feriva22/e-marketplace:latest
-        name: e-marketplace
+        name: e-marketplace-web
         ports:
         - containerPort: 9000
         envFrom:
@@ -24,3 +24,20 @@ spec:
             name: e-marketplace-configmap
         - secretRef:
             name: e-marketplace-secret
+      - image: nginx:1.7.9
+        name: e-marketplace-webserver
+        ports:
+        - containerPort: 80
+        volumeMounts: #use volumeMount to target config-map of nginx config
+        - name: nginx-config
+          mountPath: /etc/nginx/conf.d/default.conf
+          subPath: default.conf
+      
+      volumes: #define volumes for connect to configmap
+        - name: nginx-config
+          configMap:
+            name: nginx-config
+            items: 
+            - key: nginx.conf
+              path: default.conf
+

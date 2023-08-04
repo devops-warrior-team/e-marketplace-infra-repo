@@ -15,11 +15,17 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Update Image Version
+    - name: Update Image Version for Deployment
       id: imgupd
       uses: mikefarah/yq@master
       with:
         cmd: yq eval '.spec.template.spec.containers[0].image = "${{ github.event.client_payload.image }}"' -i ${{ github.event.client_payload.deployment_manifest_location }}
+
+    - name: Update Image Version for Deployment Init containers
+      id: imgupd
+      uses: mikefarah/yq@master
+      with:
+        cmd: yq eval '.spec.template.spec.initContainers[0].image = "${{ github.event.client_payload.image }}"' -i ${{ github.event.client_payload.deployment_manifest_location }}
       
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:

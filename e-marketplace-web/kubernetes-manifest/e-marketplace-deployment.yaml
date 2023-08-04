@@ -16,7 +16,7 @@ spec:
     spec:
       initContainers:
         - name: setup-web-root
-          image: feriva22/e-marketplace:13
+          image: feriva22/e-marketplace:20
           imagePullPolicy: Always
           command:
             - "/bin/sh"

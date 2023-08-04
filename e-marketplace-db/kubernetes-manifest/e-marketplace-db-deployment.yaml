@@ -27,4 +27,4 @@ spec:
       volumes:
         - name: mysql-persistent-storage
           persistentVolumeClaim:
-            claimName: e-marketplace-db-pvc
+            claimName: e-marketplace-db-pvc-new

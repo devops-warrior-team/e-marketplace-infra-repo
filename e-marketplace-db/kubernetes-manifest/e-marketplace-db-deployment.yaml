@@ -17,8 +17,8 @@ spec:
         - name: mysql
           image: mysql:latest
           envFrom:
-          - secretRef:
-              name: e-marketplace-db-secret
+            - secretRef:
+                name: e-marketplace-db-secret
           ports:
             - containerPort: 3306
           volumeMounts:

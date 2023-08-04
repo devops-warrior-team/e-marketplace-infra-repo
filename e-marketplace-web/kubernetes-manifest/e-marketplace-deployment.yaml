@@ -15,50 +15,47 @@ spec:
         app: e-marketplace
     spec:
       initContainers:
-      - name: setup-web-root
-        image: feriva22/e-marketplace:13
-        imagePullPolicy: Always
-        command:
-          - "/bin/sh"
-          - "-c"
-          - "cp -r /var/www/html/. /app"
-        volumeMounts:
-        - name: web-root
-          mountPath: /app
+        - name: setup-web-root
+          image: feriva22/e-marketplace:13
+          imagePullPolicy: Always
+          command:
+            - "/bin/sh"
+            - "-c"
+            - "cp -r /var/www/html/. /app"
+          volumeMounts:
+            - name: web-root
+              mountPath: /app
       containers:
-      - image: feriva22/e-marketplace:13
-        name: e-marketplace-web
-        ports:
-        - containerPort: 9000
-          name: http
-          protocol: TCP
-        envFrom:
-        - configMapRef:
-            name: e-marketplace-configmap
-        - secretRef:
-            name: e-marketplace-secret
-
-      - image: nginx:alpine
-        name: e-marketplace-webserver
-        ports:
-        - containerPort: 80
-          name: http
-          protocol: TCP
-        volumeMounts: #use volumeMount to target config-map of nginx config
-        - name: nginx-config
-          mountPath: /etc/nginx/conf.d/default.conf
-          subPath: default.conf
-        - name: web-root
-          mountPath: /var/www/html
-          readOnly: true
-      
+        - image: docker.io/feriva22/e-marketplace:20
+          name: e-marketplace-web
+          ports:
+            - containerPort: 9000
+              name: http
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: e-marketplace-configmap
+            - secretRef:
+                name: e-marketplace-secret
+        - image: nginx:alpine
+          name: e-marketplace-webserver
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+          volumeMounts: #use volumeMount to target config-map of nginx config
+            - name: nginx-config
+              mountPath: /etc/nginx/conf.d/default.conf
+              subPath: default.conf
+            - name: web-root
+              mountPath: /var/www/html
+              readOnly: true
       volumes: #define volumes for connect to configmap
         - name: web-root
           emptyDir: {}
         - name: nginx-config
           configMap:
             name: nginx-config
-            items: 
-            - key: nginx.conf
-              path: default.conf
-
+            items:
+              - key: nginx.conf
+                path: default.conf

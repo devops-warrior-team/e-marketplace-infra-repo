@@ -3,5 +3,3 @@ auth:
   database: e-marketplace
   username: app
   password: apppassword
-volumePermissions:
-  enabled: true

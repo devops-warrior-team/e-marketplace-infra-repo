@@ -3,3 +3,15 @@ auth:
   database: e-marketplace
   username: app
   password: apppassword
+primary:
+  podSecurityContext:
+    enabled: false
+  containerSecurityContext:
+    enabled: false
+secondary:
+  podSecurityContext:
+    enabled: false
+  containerSecurityContext:
+    enabled: false
+volumePermissions:
+  enabled: true

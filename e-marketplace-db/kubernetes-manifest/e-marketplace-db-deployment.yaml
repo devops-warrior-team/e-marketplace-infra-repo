@@ -5,21 +5,15 @@ metadata:
   namespace: e-marketplace
   labels:
     app: mysql
-    tier: backend
-    layer: database
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: mysql
-      tier: backend
-      layer: database
   template:
     metadata:
       labels:
         app: mysql
-        tier: backend
-        layer: database
     spec:
       containers:
         - name: mysql

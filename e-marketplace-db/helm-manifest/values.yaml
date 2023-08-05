@@ -3,11 +3,5 @@ auth:
   database: e-marketplace
   username: app
   password: apppassword
-primary:
-  persistence:
-    enabled: true
-    existingClaim: mysql-pvc
-  containerSecurityContext:
-    enabled: false
 volumePermissions:
   enabled: true

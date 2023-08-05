@@ -15,16 +15,25 @@ spec:
         app: e-marketplace
     spec:
       initContainers:
-        - name: setup-web-root
+        - name: setup-web-root-migrations
           image: docker.io/feriva22/e-marketplace:22
           imagePullPolicy: Always
-          command:
-            - "/bin/sh"
-            - "-c"
-            - "cp -r /var/www/html/public /app"
+          command: ["/bin/sh","-c"]
+          args:
+            - echo 'starting copy asset files';
+              cp -r /var/www/html/public /app;
+              ls -la /app;
+              echo 'starting migration database';
+              php /var/www/html/public/artisan migrate;
+              echo 'done';
           volumeMounts:
             - name: web-root
               mountPath: /app
+          envFrom:
+            - configMapRef:
+                name: e-marketplace-configmap
+            - secretRef:
+                name: e-marketplace-secret
       containers:
         - image: docker.io/feriva22/e-marketplace:22
           name: e-marketplace-web
@@ -37,6 +46,13 @@ spec:
                 name: e-marketplace-configmap
             - secretRef:
                 name: e-marketplace-secret
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1Gi
+            limits:
+              cpu: 1000m
+              memory: 2Gi
         - image: nginx:alpine
           name: e-marketplace-webserver
           ports:
@@ -50,6 +66,13 @@ spec:
             - name: web-root
               mountPath: /var/www/html
               readOnly: true
+          resources:
+            requests:
+              cpu: 200m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
       volumes: #define volumes for connect to configmap
         - name: web-root
           emptyDir: {}

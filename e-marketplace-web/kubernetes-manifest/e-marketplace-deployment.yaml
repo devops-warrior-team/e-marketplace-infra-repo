@@ -24,7 +24,7 @@ spec:
               cp -r /var/www/html/public /app;
               ls -la /app;
               echo 'starting migration database';
-              php /var/www/html/artisan migrate;
+              php /var/www/html/artisan migrate --no-interaction;
               echo 'done';
           volumeMounts:
             - name: web-root

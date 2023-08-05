@@ -4,16 +4,10 @@ auth:
   username: app
   password: apppassword
 primary:
-  podSecurityContext:
-    enabled: false
+  persistence:
+    enabled: true
+    existingClaim: mysql-pvc
   containerSecurityContext:
     enabled: false
-    runAsNonRoot: false
-secondary:
-  podSecurityContext:
-    enabled: false
-  containerSecurityContext:
-    enabled: false
-    runAsNonRoot: false
 volumePermissions:
   enabled: true

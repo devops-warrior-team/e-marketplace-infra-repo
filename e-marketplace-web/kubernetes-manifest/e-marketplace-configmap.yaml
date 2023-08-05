@@ -7,3 +7,4 @@ data:
   APP_ENV: production
   APP_DEBUG: "false"
   APP_URL: https://e-marketplace.devops-warrior.site
+  ASSET_URL: https://e-marketplace.devops-warrior.site

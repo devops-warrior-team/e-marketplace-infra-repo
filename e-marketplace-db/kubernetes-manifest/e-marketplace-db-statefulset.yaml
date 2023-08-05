@@ -22,14 +22,21 @@ spec:
           env:
             - name: MYSQL_DATABASE
               value: e-marketplace
-          envFrom:
-            - secretRef:
-                name: e-marketplace-db-secret
+            - name: MYSQL_ROOT_PASSWORD
+              value: securepassword
+            - name: MYSQL_USER
+              value: app
+            - name: MYSQL_PASSWORD
+              value: apppassword
+          #envFrom:
+          #  - secretRef:
+          #      name: e-marketplace-db-secret
           ports:
             - containerPort: 3306
           volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql
+              subPath: mysql
           resources:
             requests:
               cpu: 300m

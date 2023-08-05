@@ -4,8 +4,8 @@ metadata:
   name: e-marketplace
   namespace: e-marketplace
 spec:
-  replicas: 3
-  revisionHistoryLimit: 3
+  replicas: 1
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: e-marketplace

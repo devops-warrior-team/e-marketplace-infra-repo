@@ -10,6 +10,9 @@ spec:
     repoURL: https://github.com/devops-warrior-team/e-marketplace-infra-repo.git
     targetRevision: HEAD
     path: e-marketplace-db/helm-manifest
+    helm:
+      valueFiles:
+        - values.yaml
   destination: 
     server: https://kubernetes.default.svc
     namespace: e-marketplace

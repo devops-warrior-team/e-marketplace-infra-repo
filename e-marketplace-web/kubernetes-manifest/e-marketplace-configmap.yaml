@@ -6,4 +6,4 @@ metadata:
 data:
   APP_ENV: production
   APP_DEBUG: "false"
-  APP_URL: http://e-marketplace.devops-warrior.site
+  APP_URL: https://e-marketplace.devops-warrior.site

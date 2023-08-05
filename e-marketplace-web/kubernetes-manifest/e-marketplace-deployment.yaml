@@ -21,7 +21,7 @@ spec:
           command:
             - "/bin/sh"
             - "-c"
-            - "cp -r /var/www/html/. /app"
+            - "cp -r /var/www/html/public /app"
           volumeMounts:
             - name: web-root
               mountPath: /app

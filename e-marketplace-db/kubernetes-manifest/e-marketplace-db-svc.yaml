@@ -11,3 +11,5 @@ spec:
     protocol: TCP
   selector:
     app: mysql
+    tier: backend
+    layer: database

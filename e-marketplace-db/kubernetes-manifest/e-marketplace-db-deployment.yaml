@@ -3,19 +3,30 @@ kind: Deployment
 metadata:
   name: e-marketplace-db-mysql
   namespace: e-marketplace
+  labels:
+    app: mysql
+    tier: backend
+    layer: database
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: mysql
+      tier: backend
+      layer: database
   template:
     metadata:
       labels:
         app: mysql
+        tier: backend
+        layer: database
     spec:
       containers:
         - name: mysql
-          image: mysql:latest
+          image: mysql:5.7
+          env:
+            - name: MYSQL_DATABASE
+              value: e-marketplace
           envFrom:
             - secretRef:
                 name: e-marketplace-db-secret
@@ -24,7 +35,34 @@ spec:
           volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql
+              subPath: mysql
+          resources:
+            requests:
+              cpu: 300m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          livenessProbe:
+            exec:
+              command:
+              - bash
+              - -c
+              - mysqladmin -u ${MYSQL_USER} -p${MYSQL_PASSWORD} ping
+            initialDelaySeconds: 10
+            periodeSeconds: 5
+            timeoutSeconds: 5
+          readinessProbe:
+            exec:
+              command:
+              - bash
+              - -c
+              - mysql -h 127.0.0.1 -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -e "SELECT 1"
+            initialDelaySeconds: 5
+            periodSeconds: 2
+            timeoutSeconds: 1
+
       volumes:
         - name: mysql-persistent-storage
           persistentVolumeClaim:
-            claimName: e-marketplace-db-pvc-new
+            claimName: e-marketplace-db-pvc-mysql

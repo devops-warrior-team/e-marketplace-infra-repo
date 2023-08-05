@@ -1,13 +1,14 @@
-auth:
-  rootPassword: securepassword
-  database: e-marketplace
-  username: app
-  password: apppassword
-primary:
-  persistence:
+mysql:
+  auth:
+    rootPassword: securepassword
+    database: e-marketplace
+    username: app
+    password: apppassword
+  primary:
+    persistence:
+      enabled: true
+      existingClaim: mysql-pvc
+    containerSecurityContext:
+      enabled: false
+  volumePermissions:
     enabled: true
-    existingClaim: mysql-pvc
-  containerSecurityContext:
-    enabled: false
-volumePermissions:
-  enabled: true

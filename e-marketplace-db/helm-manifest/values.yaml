@@ -5,9 +5,9 @@ auth:
   password: apppassword
 primary:
   persistence:
-    enabled: true
+    enabled: false
     existingClaim: mysql-pvc
   containerSecurityContext:
     enabled: false
 volumePermissions:
-  enabled: true
+  enabled: false

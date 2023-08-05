@@ -1,4 +1,4 @@
-mysql:
+mysql: #this is for placing for dependencies value based on Chart.yaml
   auth:
     rootPassword: securepassword
     database: e-marketplace

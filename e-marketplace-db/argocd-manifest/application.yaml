@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/devops-warrior-team/e-marketplace-infra-repo.git
     targetRevision: HEAD
-    path: e-marketplace-db/kubernetes-manifest
+    path: e-marketplace-db/helm-manifest
   destination: 
     server: https://kubernetes.default.svc
     namespace: e-marketplace

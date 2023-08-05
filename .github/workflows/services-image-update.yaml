@@ -22,7 +22,7 @@ jobs:
         cmd: yq eval '.spec.template.spec.containers[0].image = "${{ github.event.client_payload.image }}"' -i ${{ github.event.client_payload.deployment_manifest_location }}
 
     - name: Update Image Version for Deployment Init containers
-      id: imgupd
+      id: imgupd_initcontainers
       uses: mikefarah/yq@master
       with:
         cmd: yq eval '.spec.template.spec.initContainers[0].image = "${{ github.event.client_payload.image }}"' -i ${{ github.event.client_payload.deployment_manifest_location }}

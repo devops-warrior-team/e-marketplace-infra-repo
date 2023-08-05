@@ -7,4 +7,3 @@ data:
   APP_ENV: production
   APP_DEBUG: "false"
   APP_URL: http://e-marketplace.devops-warrior.site
-  ASSET_URL: "${APP_URL}"

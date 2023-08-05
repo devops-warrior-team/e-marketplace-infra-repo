@@ -8,10 +8,12 @@ primary:
     enabled: false
   containerSecurityContext:
     enabled: false
+    runAsNonRoot: false
 secondary:
   podSecurityContext:
     enabled: false
   containerSecurityContext:
     enabled: false
+    runAsNonRoot: false
 volumePermissions:
   enabled: true

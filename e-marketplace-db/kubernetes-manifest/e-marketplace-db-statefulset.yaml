@@ -36,7 +36,6 @@ spec:
           volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql
-              subPath: mysql
           resources:
             requests:
               cpu: 300m

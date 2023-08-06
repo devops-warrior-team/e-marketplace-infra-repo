@@ -18,7 +18,7 @@ spec:
     spec:
       initContainers:
         - name: setup-web-root
-          image: docker.io/feriva22/e-marketplace:24
+          image: docker.io/feriva22/e-marketplace:28
           imagePullPolicy: Always
           command: ["/bin/sh", "-c"]
           args:
@@ -32,7 +32,7 @@ spec:
             - secretRef:
                 name: e-marketplace-secret
       containers:
-        - image: docker.io/feriva22/e-marketplace:24
+        - image: docker.io/feriva22/e-marketplace:28
           name: e-marketplace-web
           ports:
             - containerPort: 9000

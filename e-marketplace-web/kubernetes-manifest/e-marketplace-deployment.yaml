@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: e-marketplace
   namespace: e-marketplace
+  annotations:
+    secret.reloader.stakater.com/reload: "e-marketplace-configmap,e-marketplace-secret"
 spec:
   replicas: 3
   revisionHistoryLimit: 2

@@ -14,7 +14,7 @@ data:
   nginx.conf: |
     server {
       listen 80;
-      server_name localhost;
+      server_name e-marketplace.devops-warrior.site;
 
       root /var/www/html/public;
       index index.php;

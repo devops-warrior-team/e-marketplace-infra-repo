@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: e-marketplace-configmap
   namespace: e-marketplace
+  annotations:
+    reloader.stakater.com/match: "true"
 data:
   APP_NAME: "E-Marketplace App"
   APP_ENV: production

@@ -4,7 +4,7 @@ metadata:
   name: e-marketplace
   namespace: e-marketplace
   annotations:
-    secret.reloader.stakater.com/reload: "e-marketplace-configmap,e-marketplace-secret"
+    secret.reloader.stakater.com/reload: "e-marketplace-configmap,e-marketplace-secret,nginx-config"
 spec:
   replicas: 1
   revisionHistoryLimit: 2

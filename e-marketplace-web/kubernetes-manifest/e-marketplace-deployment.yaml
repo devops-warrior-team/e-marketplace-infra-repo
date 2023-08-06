@@ -18,16 +18,11 @@ spec:
     spec:
       initContainers:
         - name: setup-web-root
-          image: docker.io/feriva22/e-marketplace:23
+          image: docker.io/feriva22/e-marketplace:24
           imagePullPolicy: Always
-          command: ["/bin/sh","-c"]
+          command: ["/bin/sh", "-c"]
           args:
-            - echo 'starting copy asset files';
-              cp -r /var/www/html/public /app;
-              ls -la /app;
-              echo 'starting migration database';
-              php /var/www/html/artisan migrate --env=testing --no-interaction -vvv;
-              echo 'done';
+            - echo 'starting copy asset files'; cp -r /var/www/html/public /app; ls -la /app; echo 'starting migration database'; php /var/www/html/artisan migrate --env=testing --no-interaction -vvv; echo 'done';
           volumeMounts:
             - name: web-root
               mountPath: /app
@@ -37,7 +32,7 @@ spec:
             - secretRef:
                 name: e-marketplace-secret
       containers:
-        - image: docker.io/feriva22/e-marketplace:23
+        - image: docker.io/feriva22/e-marketplace:24
           name: e-marketplace-web
           ports:
             - containerPort: 9000

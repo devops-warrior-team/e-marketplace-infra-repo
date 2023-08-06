@@ -10,4 +10,6 @@ data:
   ASSET_URL: https://e-marketplace.devops-warrior.site
   PROXY_URL: https://e-marketplace.devops-warrior.site
   PROXY_SCHEMA: https
+  MAIL_FROM_ADDRESS: "admin@e-marketplace.devops-warrior.site"
+  MAIL_FROM_NAME: "E-Marketplace App"
   

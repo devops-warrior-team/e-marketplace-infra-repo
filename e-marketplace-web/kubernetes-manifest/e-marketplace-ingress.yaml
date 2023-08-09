@@ -25,7 +25,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: e-marketplace-internal
+            name: e-marketplace
             port:
               name: http
   tls:

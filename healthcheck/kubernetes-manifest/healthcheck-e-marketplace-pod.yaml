@@ -1,0 +1,18 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: healthcheck-e-marketplace
+  namespace: healthcheck
+  labels:
+    app: healthcheck-e-marketplace
+spec:
+  containers:
+    - name: healthcheck-e-marketplace
+      image: curlimages/curl:7.74.0
+      command: ["/bin/sh", "-c"]
+      args:
+        - >
+          while true; do
+            curl -I -X GET http://e-marketplace.e-marketplace
+            sleep 1
+          done
